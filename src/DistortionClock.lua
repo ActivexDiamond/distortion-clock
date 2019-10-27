@@ -77,7 +77,6 @@ do
 	 
 	 	if math.random() > 0.995 or c > 0 then
 	 		c = c > 0 and c - 1 or 50
-	 		print('c', c) 
 			for _, v in ipairs(clks) do
 				v.col = col
 				v.colOutline = colOut
@@ -94,7 +93,7 @@ do
 end
 
 return function(s)
-	scale = s or 1 --External option.
+	scale = s or 0.7 --External option.
 	
 	---Configs
 	local radius = 50 * scale
@@ -120,20 +119,19 @@ return function(s)
 		local segs = 3
 		local segsw = segw * segs
 		local sep = sep * (segs - 1)
-		local extra = 5
+		local extra = 15
 		return segsw + sep + extra
 	end
 	
 	function dclk:getH()
 		local d = radius * 2
-		return d * 3
+		local clkh = d * 3
+		local extra = 5
+		return clkh + extra
 	end
 
 	return dclk
 end
-
-
-
 
 
 

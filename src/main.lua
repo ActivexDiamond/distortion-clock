@@ -1,4 +1,6 @@
 local DistortionClock = require "DistortionClock"
+local SpazesGenerator = require "SpazesGenerator"
+local StrikesGenerator = require "StrikesGenerator"
 
 DISTORTION_CLOCK = {
 	TITLE = "Distortion Clock",
@@ -17,28 +19,57 @@ DISTORTION_CLOCK = {
 		["1.2.0"] = [[
 			- Removed debug 'print' from 'stickColorShader'.
 			- Added the ability to scale the clock with the scroll wheel.
+			- Added a touch of empty space around the bottom and right edges of the clock.
+			- Randomized the RNG's seed.
 			]]
 	},
 }
- 
 scale = 0.7;
 
 local dclk;
+local stgen, spgen;
 function love.load()
+	math.randomseed(os.time())
+	
 	dclk = DistortionClock(scale)
-
 	local flags = {borderless = true, centered = false}
 	love.window.setMode(dclk:getW(), dclk:getH(), flags) 
 	love.window.setPosition(0, 0, 2)
+	love.window.setPosition(50, 50, 2)
 	sw, sh = love.window.getMode()
+	
+	stgen = StrikesGenerator()
+	spgen = SpazesGenerator()
 end	
 
 function love.update(dt)
 	dclk:tick(dt)
+	stgen:tick(dt)
+	spgen:tick(dt)
 end
 
 
 function love.draw()
 	dclk:draw()
+	stgen:draw()
+	spgen:draw()	
 end
 
+function love.wheelmoved(x, y)
+	scale = scale + (y * 0.05)
+	love.load()
+end
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
