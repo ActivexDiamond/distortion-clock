@@ -21,20 +21,6 @@ scale = 0.7;
 
 local dclk;
 function love.load()
-	dclk = DistortionClock()
-end
-
-function love.update(dt)
-	dclk:tick(dt)
-end
-
-function love.draw()
-	dclk:draw()
-end
-
-
-local dclk;
-function love.load()
 	dclk = DistortionClock(scale)
 
 	local flags = {borderless = true, centered = false}
