@@ -14,6 +14,10 @@ DISTORTION_CLOCK = {
 			- Cleaned up the imports in main.lua.
 			- Refactored main.lua out into DistortionClock.lua, cleaning it up greatly.
 			]],
+		["1.2.0"] = [[
+			- Removed debug 'print' from 'stickColorShader'.
+			- Added the ability to scale the clock with the scroll wheel.
+			]]
 	},
 }
  
@@ -37,3 +41,4 @@ end
 function love.draw()
 	dclk:draw()
 end
+
